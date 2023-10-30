@@ -42,13 +42,17 @@ db.connect(err => {
                 break;
             case 'View all employees':
                 viewEmployees();
+                break;
+            case 'Add a department':
+                addDepartment();
                 break;  
         }
     });
   };
 
+// View departments, roles, or employees
 const viewDepartments = () => {
-    const query = 'SELECT DISTINCT * FROM departments';
+    const query = 'SELECT * FROM departments';
     db.query(query, (err, results) => {
         if (err) {
             throw err;
@@ -59,7 +63,7 @@ const viewDepartments = () => {
 };
 
 const viewRoles = () => {
-    const query = 'SELECT DISTINCT * FROM roles';
+    const query = 'SELECT * FROM roles';
     db.query(query, (err, results) => {
         if (err) {
             throw err;
@@ -70,7 +74,7 @@ const viewRoles = () => {
 };
 
 const viewEmployees = () => {
-    const query = 'SELECT DISTINCT * FROM employees';
+    const query = 'SELECT * FROM employees';
     db.query(query, (err, results) => {
         if (err) {
             throw err;
@@ -79,3 +83,24 @@ const viewEmployees = () => {
         init();
     });
 };
+
+// Add department
+const addDepartment = () => {
+    inquirer.prompt([
+            {
+                name: 'department_name',
+                type: 'input',
+                message: 'Enter the department name:',
+            },
+        ]).then(answer => {
+            const query = 'INSERT INTO departments (department_name) VALUES (?)';
+            db.query(query, [answer.department_name], (err, results) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(`Added department: ${answer.department_name}`);
+                }
+                init();
+            });
+        });
+    };
