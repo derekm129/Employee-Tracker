@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+// Create connection with promise support
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password1234',
     database: 'employees_db',
-});
+}).promise();
 
 
 db.connect(err => {
@@ -53,54 +54,62 @@ db.connect(err => {
 // View departments, roles, or employees
 const viewDepartments = () => {
     const query = 'SELECT * FROM departments';
-    db.query(query, (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-        init();
-    });
+    db.promise().query(query)
+        .then(([rows]) => {
+            console.table(rows);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+        .finally(() => {
+            init();
+        });
 };
 
 const viewRoles = () => {
     const query = 'SELECT * FROM roles';
-    db.query(query, (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-        init();
-    });
+    db.promise().query(query)
+        .then(([rows]) => {
+            console.table(rows);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+        .finally(() => {
+            init();
+        });
 };
 
 const viewEmployees = () => {
     const query = 'SELECT * FROM employees';
-    db.query(query, (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-        init();
-    });
+    db.promise().query(query)
+        .then(([rows]) => {
+            console.table(rows);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+        .finally(() => {
+            init();
+        });
 };
 
 // Add department
-const addDepartment = () => {
-    inquirer.prompt([
+const addDepartment = async () => {
+    try {
+        const answer = await inquirer.prompt([
             {
                 name: 'department_name',
                 type: 'input',
                 message: 'Enter the department name:',
             },
-        ]).then(answer => {
-            const query = 'INSERT INTO departments (department_name) VALUES (?)';
-            db.query(query, [answer.department_name], (err, results) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log(`Added department: ${answer.department_name}`);
-                }
-                init();
-            });
-        });
-    };
+        ]);
+        const query = 'INSERT INTO departments (department_name) VALUES (?)';
+        await db.query(query, [answer.department_name]);
+
+        console.log(`Added department: ${answer.department_name}`);
+    } catch (err) {
+        console.error(err);
+    }
+    init();
+};
