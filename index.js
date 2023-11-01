@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
-// Create connection with promise support
+const addRole = require('./role');
+const addEmployee = require('./employee');
+// Create connection 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -50,10 +52,10 @@ db.connect(err => {
                 addDepartment();
                 break;  
             case 'Add a role':
-                addRole();
+                addRole(db, init);
                 break; 
             case 'Add an employee':
-                addEmployee();
+                addEmployee(db, init);
                 break; 
         }
     });
@@ -107,99 +109,6 @@ const addDepartment = () => {
                 console.error(err);
             } else {
                 console.log(`Added department: ${answer.department_name}`);
-            }
-            init();
-        });
-    });
-};
-
-// Add a role
-const addRole = () => {
-    inquirer.prompt([
-        {
-            name: 'title',
-            type: 'input',
-            message: 'Enter the role name:',
-        },
-        {
-            name: 'salary',
-            type: 'input',
-            message: 'Enter the role salary:',
-        },
-        {
-            name: 'department_id',
-            type: 'list',
-            message: 'Enter the department:',
-            choices: 
-            [
-                'Technology', 
-                'Finance', 
-                'Marketing', 
-                'Human Resources'
-            ]
-        },
-    ]).then(answer => {
-        const departmentIdMap = {
-            'Technology': 1, 
-            'Finance': 2, 
-            'Marketing': 3, 
-            'Human Resources': 4,
-        };
-
-        const departmentId = departmentIdMap[answer.department_id];
-
-        const query = 'INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)';
-        db.query(query, [answer.title, answer.salary, departmentId], (err, results) => {
-            if (err) {
-                console.error(err);
-            } else {
-                console.log(`Added role: ${answer.title}`);
-            }
-            init();
-        });
-    });
-};
-// Add employee
-const addEmployee = () => {
-    inquirer.prompt([
-        {
-            name: 'title',
-            type: 'input',
-            message: 'Enter the role name:',
-        },
-        {
-            name: 'salary',
-            type: 'input',
-            message: 'Enter the role salary:',
-        },
-        {
-            name: 'department_id',
-            type: 'list',
-            message: 'Enter the department:',
-            choices: 
-            [
-                'Technology', 
-                'Finance', 
-                'Marketing', 
-                'Human Resources'
-            ]
-        },
-    ]).then(answer => {
-        const departmentIdMap = {
-            'Technology': 1, 
-            'Finance': 2, 
-            'Marketing': 3, 
-            'Human Resources': 4,
-        };
-
-        const departmentId = departmentIdMap[answer.department_id];
-
-        const query = 'INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)';
-        db.query(query, [answer.title, answer.salary, departmentId], (err, results) => {
-            if (err) {
-                console.error(err);
-            } else {
-                console.log(`Added role: ${answer.title}`);
             }
             init();
         });
