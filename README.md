@@ -1,15 +1,25 @@
+# Employee Tracker
 
-<!-- WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database -->
-<!-- WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database -->
-<!-- WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database -->
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+## Description
+- My motivation for this project was to create a content managing system(CMS).
+- I built this project using JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2.
+- This app allows the user to view tables in an employee database and to make changes to those tables if necessary.
+- I learned from making this application how to use and manipulate databases with MySQL2.
+
+## Installation
+- This application requires Node.js, Inquirer version 8.2.4, and MySQL2.
+
+## Usage
+- Enter 'node index.js' in terminal to start the program. Answers questions from the prompt to view or edit tables. Press "CTRL + C" to exit.
+
+![Screenshot](./assets/images/screenshot.png)
+
+Video Demonstration:
+
+
+
+## Credits
+N/A
+
+## License
+MIT
