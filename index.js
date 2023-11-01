@@ -1,7 +1,11 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
-const addRole = require('./role');
-const addEmployee = require('./employee');
+// Add a role
+const addRole = require('./lib/role');
+// Add an employee
+const addEmployee = require('./lib/employee');
+// Update employee role
+const updateRole = require('./lib/update');
 // Create connection 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -57,6 +61,9 @@ db.connect(err => {
             case 'Add an employee':
                 addEmployee(db, init);
                 break; 
+            case 'Update an employee role':
+                updateRole(db, init);
+                break;
         }
     });
   };
