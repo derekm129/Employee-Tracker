@@ -81,11 +81,10 @@ const viewDepartments = () => {
 };
 
 const viewRoles = () => {
-    const query = `SELECT e.id, roles.title, departments.department_name AS department, roles.salary
-    FROM employees e
-    JOIN roles ON e.role_id = roles.id
-    JOIN departments ON roles.department_id = departments.id;
-    `;
+    const query = `SELECT roles.title, roles.salary, departments.department_name AS department
+    FROM roles 
+    LEFT JOIN departments
+    ON roles.department_id = departments.id;`;
 
     db.query(query, (err, results) => {
         if (err) {

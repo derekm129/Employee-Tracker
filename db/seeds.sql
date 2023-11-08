@@ -20,4 +20,6 @@ VALUES
     ('Arnold', 'Park', 1, NULL),
     ('Norman', 'Gomez', 2, NULL),
     ('Alia', 'Carter', 3, 1),
-    ('Elisabeth', 'Jones', 4, 2);
+    ('Leo', 'Brown', 4, 1),
+    ('Cassie', 'Mitchell', 5, 2),
+    ('Elisabeth', 'Jones', 6, 2);
