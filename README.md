@@ -5,7 +5,7 @@
    I built this project using JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2. I learned from making this application how to use and manipulate databases.
 
 ## Installation
-- This application requires Node.js, Inquirer version 8.2.4, and MySQL2.
+- This application requires JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2.
 
 ## Usage
 - Enter 'node index.js' in terminal to start the program. Answers questions from the prompt to view or edit tables. Press "CTRL + C" to exit.
