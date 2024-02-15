@@ -1,10 +1,8 @@
 # Employee Tracker
 
 ## Description
-- My motivation for this project was to create a content managing system(CMS).
-- I built this project using JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2.
-- This app allows the user to view tables in an employee database and to make changes to those tables if necessary.
-- I learned from making this application how to use and manipulate databases with MySQL2.
+- My goal for this project was to create a content managing system(CMS). This app allows the user to view tables in an employee database and to make changes to those tables if necessary.
+   I built this project using JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2. I learned from making this application how to use and manipulate databases.
 
 ## Installation
 - This application requires Node.js, Inquirer version 8.2.4, and MySQL2.
