@@ -1,7 +1,7 @@
 # Employee Tracker
 
 ## Description
-- The aim of this project was to develop a robust Content Management System (CMS) capable of managing employee data effectively.
+- The aim of this project was to develop a Content Management System (CMS) capable of managing employee data effectively.
   This application allows users to seamlessly view and modify tables within an employee database as necessary.
   Utilizing JavaScript, Node.js, Inquirer version 8.2.4, and MySQL2, this project offers valuable insights into database management and manipulation techniques.
 
